@@ -1,0 +1,58 @@
+<footer>
+    <div class="flex-large">
+        <div class="social">
+            <h3>Retrouvez-nous</h3>
+            <a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
+        <form action="index.php?page=newsletter&task=insert" method="post" id="form-newsletter" data-page="newsletter" data-task="insert" class="form box-container">
+            <fieldset>
+                <legend>Inscrivez-vous à la newsletter</legend>
+                <label for="newsletter" class="hide" aria-labelledby="newsletter">Email</label>
+                <input type="email" name="email" id="newsletter" data-type="email" placeholder="Email" required>
+                <?php if (isset($_SESSION['error-newsletter'])) : ?>
+                    <span class="no-js form-error">
+                        <?= \Libraries\Session::issetValue('error-newsletter', 'message', ''); ?>
+                    </span>
+                    <?php unset($_SESSION['error-newsletter']); ?>
+                <?php elseif (isset($_GET['newsletter']) && $_GET['newsletter'] === 'success') : ?>
+                    <span class="success box-container">
+                        Vous êtes abonnés à la newsletter
+                    </span>
+                <?php endif; ?>
+                <button type="submit">Envoyer</button>
+            </fieldset>
+        </form>
+        <div class="footer-menu">
+            <h3>En plus</h3>
+            <ul>
+                <li><a href="index.php?page=contact" class="<?= \Libraries\Active::activeTab('page', 'contact') ?>">Contactez-nous</a></li>
+                <li><a href=" index.php?page=cgu" class="<?= \Libraries\Active::activeTab('page', 'cgu') ?>">Conditions Générales du site</a></li>
+                <li><a href="index.php?page=thanks" class="<?= \Libraries\Active::activeTab('page', 'thanks') ?>">Remerciements</a></li>
+            </ul>
+        </div>
+    </div>
+    <?php if ($isAdmin) : ?>
+        <div class="back">
+            <h3>Back</h3>
+            <ul>
+                <li>
+                    <a href="index.php?page=back&task=backUser" class="<?= \Libraries\Active::activeTab('task', 'showAllUsers') ?>">Utilisateurs</a>
+                </li>
+                <li>
+                    <a href="index.php?page=back&task=backForum" class="<?= \Libraries\Active::activeTab('task', 'showUncheckedComments') ?>">Forum</a>
+                </li>
+                <li>
+                    <a href="index.php?page=back&task=backShop" class="<?= \Libraries\Active::activeTab('task', 'showAllProducts') ?>">Shop</a>
+                </li>
+                <li>
+                    <a href="index.php?page=back&task=backOrder" class="<?= \Libraries\Active::activeTab('task', 'order') ?>">Commandes</a>
+                </li>
+            </ul>
+        </div>
+
+    <?php endif; ?>
+    <p class="copyright">Copyright © Aymeric Garin Nguyen</p>
+</footer>

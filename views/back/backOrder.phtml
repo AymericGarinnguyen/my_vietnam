@@ -1,0 +1,30 @@
+<section class="section-back">
+    <h1>Commandes</h1>
+    <div class="container">
+        <div class="box-container">
+            <div class="table-overflow">
+                <table class="table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>N° de commande</th>
+                            <th>Client</th>
+                            <th>Date</th>
+                            <th>Check</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($orders as $order) : ?>
+
+                            <tr>
+                                <td><?= $order['order_id'] ?></td>
+                                <td><?= $order['lastname'] ?></td>
+                                <td><?= $order['created_at'] ?></td>
+                                <td class="center"><a href="index.php?page=back&task=checkOrder&id=<?= $order['order_id'] ?>"><i class="fas fa-chevron-right"></i></a></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

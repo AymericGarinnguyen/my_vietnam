@@ -1,0 +1,14 @@
+<section class="section-forum">
+    <h1>Le forum</h1>
+    <?php foreach ($categories as $category) :
+        $date = strtotime($lastDate[$category['categories_id'] - 1]['created_at']);
+    ?>
+        <article>
+            <h2><?= $category['icon'] ?><?= $category['category'] ?></h2>
+            <p><?= $category['description'] ?></p>
+
+            <a href="index.php?page=forum&task=chat&id=<?= $category['categories_id'] ?>&pageIndex=1" class="button">Aller vers la discussion</a>
+            <p>Dernier message publié le <?= date('d-m-Y', $date) ?></p>
+        </article>
+    <?php endforeach ?>
+</section>

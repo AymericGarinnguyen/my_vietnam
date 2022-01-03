@@ -1,0 +1,44 @@
+<section class="section-connection">
+    <h1>Connexion / Inscription</h1>
+    <div class="container">
+
+        <?php \Libraries\Error::display('error-user') ?>
+
+        <!-- Authentification From -->
+        <form id="login" method="post" action="index.php?page=user&task=manageUser" class="box-container">
+            <fieldset>
+                <legend>Authentification</legend>
+                <input type="hidden" name="action" value="login">
+                <label for="email-connection" aria-labelledby="email">Email</label>
+                <input type="email" name="email" id="email-connection" value="<?= \Libraries\Session::issetValue('user', 'email', '') ?>" required>
+
+                <label for="password-connection" aria-labelledby="mot de passe">Mot de passe</label>
+                <input type="password" name="password" id="password-connection" value="<?= \Libraries\Session::issetValue('user', 'password', '') ?>" required>
+
+                <button type="submit" name="auth">Connexion</button>
+            </fieldset>
+        </form>
+        <!-- Registration From -->
+        <form id="register" method="post" action="index.php?page=user&task=manageUser" class="box-container">
+            <fieldset>
+                <legend>Créer un compte</legend>
+                <input type="hidden" name="action" value="register">
+
+                <label for="firstname-registration" aria-labelledby="prénom">Prénom</label>
+                <input type="text" name="firstname" id="firstname-registration" value="<?= \Libraries\Session::issetValue('user', 'reg-firstname', '') ?>" required>
+
+                <label for="lastname-registration" aria-labelledby="nom">Nom</label>
+                <input type="text" name="lastname" id="lastname-registration" value="<?= \Libraries\Session::issetValue('user', 'reg-lastname', '') ?>" required>
+
+
+                <label for="email-registration" aria-labelledby="email">Email</label>
+                <input type="email" name="email" id="email-registration" value="<?= \Libraries\Session::issetValue('user', 'reg-email', '') ?>" required>
+
+                <label for="password-registration" aria-labelledby="mot de passe">Mot de passe</label>
+                <input type="password" name="password" id="password-registration" value="<?= \Libraries\Session::issetValue('user', 'reg-password', '') ?>" required>
+                <button type="submit" name="insert">S'enregistrer</button>
+            </fieldset>
+        </form>
+        <?php unset($_SESSION['user']); ?>
+    </div>
+</section>

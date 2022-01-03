@@ -1,0 +1,36 @@
+<section class="section-back">
+    <h1>Ajouter un produit</h1>
+    <div class="container">
+        <?php \Libraries\Error::display('error-product') ?>
+        <form action="index.php?page=back&task=manageProduct" method="post" enctype="multipart/form-data" class="box-container">
+            <fieldset>
+                <label for="product-name">Nom</label>
+                <input type="text" name="name" id="product-name" value="<?= \Libraries\Session::issetValue('back-product', 'name', '') ?>" required>
+
+                <label for="product-description">Description</label>
+                <textarea name="description" id="product-description" required><?= \Libraries\Session::issetValue('back-product', 'description', '') ?></textarea>
+
+                <label for="product-picture">Image</label>
+                <input type="file" name="picture" id="product-picture" required>
+
+                <label for="product-price">Prix</label>
+                <input type="text" name="price" id="product-price" value="<?= \Libraries\Session::issetValue('back-product', 'price', '') ?>" required>
+
+                <label for="product-stock">Stock</label>
+                <input type="text" name="stock" id="product-stock" value="<?= \Libraries\Session::issetValue('back-product', 'stock', '') ?>" required>
+
+                <label for="product-category">Catégorie</label>
+                <select name="category" id="product-category" class="select">
+                    <option value="vêtement" <?= isset($_SESSION['back-product']['category']) &&  $_SESSION['back-product']['category'] === "vêtement" ? 'selected' : '' ?>>Vêtement</option>
+                    <option value="épicerie" <?= isset($_SESSION['back-product']['category']) &&  $_SESSION['back-product']['category'] === "épicerie" ? 'selected' : '' ?>>Épicerie</option>
+                    <option value="goodies" <?= isset($_SESSION['back-product']['category']) &&  $_SESSION['back-product']['category'] === "goodies" ? 'selected' : '' ?>>Goodies</option>
+                </select>
+                <div class="group-buttons">
+                    <button type="submit" name="insert">Valider</button>
+                    <a href="index.php?page=back&task=backShop" class="cancel">Annuler</a>
+                </div>
+            </fieldset>
+        </form>
+        <?php unset($_SESSION['back-product']); ?>
+    </div>
+</section>

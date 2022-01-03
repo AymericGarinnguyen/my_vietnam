@@ -1,0 +1,12 @@
+<section class="section-region">
+    <h1><?= $pageTitle ?></h1>
+    <?php foreach ($regions as $region) : ?>
+        <article>
+            <figure>
+                <img src="assets/img/<?= $region['picture'] ?>" alt="Photo de la ville <?= $region['title'] ?>" />
+            </figure>
+            <h2><?= $region['title'] ?></h2>
+            <?= $region['texts'] ?>
+        </article>
+    <?php endforeach ?>
+</section>

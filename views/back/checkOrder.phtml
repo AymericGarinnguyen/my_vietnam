@@ -1,0 +1,29 @@
+<section class="section-back">
+    <h1>Modifier le produit</h1>
+
+    <div class="container">
+        <div class="order box-container">
+            <p><span>Numéro de commande : </span><?= $order[0]['order_id'] ?></p>
+            <p><span>Nom du client : </span><?= $order[0]['client'] ?></p>
+            <span>Adresse : </span>
+            <address class="order-address">
+                <p><?= $order[0]['address_line1'] ?></p>
+                <p><?= $order[0]['address_line2'] ?></p>
+                <p><?= $order[0]['zipcode'] ?></p>
+                <p><?= $order[0]['city'] ?></p>
+            </address>
+            <p><span>Téléphone : </span><?= $order[0]['phone'] ?></p>
+            <p><span>Date de la commande : </span><?= $order[0]['created_at'] ?></p>
+            <p><span>Produits :</span></p>
+            <ul>
+                <?php foreach ($order as $product) : ?>
+                    <li>- <?= $product['name'] ?> -><span> Quantité : </span><?= $product['quantity'] ?></li>
+                <?php endforeach ?>
+            </ul>
+            <div class="group-buttons">
+                <a href="index.php?page=back&task=deleteOrder&id=<?= $order[0]['order_id'] ?>" class="button">Valider</a>
+                <a href="index.php?page=back&task=backOrder" class="cancel">Annuler</a>
+            </div>
+        </div>
+    </div>
+</section>

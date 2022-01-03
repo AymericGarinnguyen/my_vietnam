@@ -1,0 +1,46 @@
+<section class="section-chat">
+    <h1><?= $pageCategory ?></h1>
+    <div class="group-buttons">
+        <a href="<?= $_SERVER["REQUEST_URI"] ?>#form-anchor" class="button">Laissez un message</a>
+        <a href="index.php?page=forum" class="button outline">&lt;- Retour </a>
+    </div>
+
+
+    <?php require 'paging.phtml' ?>
+
+    <?php foreach ($messages as $message) : ?>
+
+        <article>
+            <h2><?= $message['title'] ?></h2>
+            <p><?= $message['message'] ?></p>
+            <p>publié par <?= $message['firstname'] . ' ' . $message['lastname'] ?> - <span><?= date("d-m-Y", strtotime($message['created_at'])) ?></span></p>
+        </article>
+    <?php endforeach ?>
+
+    <?php require 'paging.phtml' ?>
+
+    <?php \Libraries\Error::display('error-forum'); ?>
+
+    <?php if (isset($_SESSION['success-message'])) : ?>
+        <div class="success box-container">
+            <p><?= $_SESSION['success-message']['message'] ?></p>
+        </div>
+    <?php
+        unset($_SESSION['success-message']);
+    endif;
+    ?>
+    <div class="form-container" id="form-anchor">
+        <form action="index.php?page=forum&task=insert" method="post" id="insert-message" data-page="forum" data-task="insert" class="form box-container">
+            <fieldset>
+                <legend>Laissez un message</legend>
+                <label for="chat-title">Titre du sujet</label>
+                <input type="text" id="chat-title" name="title" data-type="title" value="<?= \Libraries\Session::issetValue('forum', 'title', '') ?>" required>
+
+                <label for="chat-message">Votre message</label>
+                <textarea name="message" id="chat-message" data-type="description" cols="30" rows="10" required><?= \Libraries\Session::issetValue('forum', 'message', '') ?></textarea>
+                <button type="submit">Envoyer</button>
+            </fieldset>
+        </form>
+        <?php unset($_SESSION['forum']); ?>
+    </div>
+</section>

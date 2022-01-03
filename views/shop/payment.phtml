@@ -1,0 +1,49 @@
+<section class="section-pay">
+    <h1>Paiement</h1>
+    <div class="container">
+
+        <?php \Libraries\Error::display('error-payment'); ?>
+
+        <?php if (isset($_GET['success']) && $_GET['success'] === 'true') : ?>
+            <div class="success box-container">
+                <p>Votre paiement bien été effectué, votre commande est en cours !</p>
+            </div>
+        <?php else : ?>
+            <form action="index.php?page=cart&task=checkPayment" method="post" id="form-pay" data-page="cart" data-task="checkPayment" class="form box-container">
+                <fieldset>
+                    <label for="visa">Numéro de carte</label>
+                    <input type="text" name="visa" id="visa" data-type="visa" value="<?= \Libraries\Session::issetValue('payment', 'visa', '') ?>" required>
+
+                    <label for="name">Nom sur la carte</label>
+                    <input type="text" name="name" id="name" data-type="text" value="<?= \Libraries\Session::issetValue('payment', 'name', '') ?>" required>
+
+                    <div class="group-date">
+                        <p id="expiration">Date d'expiration</p>
+                        <label for="month" aria-labelledby="expiration" class="hide"></label>
+                        <select name="month" id="month" data-type="date" class="expiry">
+                            <?php for ($i = 1; $i <= 12; $i++) : ?>
+                                <option value="<?= $i ?>" <?= isset($_SESSION['payment']) && intval($_SESSION['payment']['month']) === $i ? 'selected' : '' ?>><?= $i < 10 ? "0$i" : $i ?></option>
+                            <?php endfor ?>
+                        </select>
+                        <label for="year" aria-labelledby="expiration" class="hide"></label>
+                        <select name="year" id="year" class="expiry">
+                            <?php
+                            $date = date("Y");
+                            for ($i = $date; $i <= $date + 20; $i++) : ?>
+                                <option value="<?= $i ?>" <?= isset($_SESSION['payment']) && intval($_SESSION['payment']['year']) === $i ? 'selected' : '' ?>><?= $i ?></option>
+                            <?php endfor ?>
+                        </select>
+                    </div>
+
+                    <label for="security">Code de sécurité (CVV)</label>
+                    <input type="number" name="security" id="security" data-type="security" value="<?= \Libraries\Session::issetValue('payment', 'security', '') ?>" required>
+
+                    <button type="submit">Confirmer</button>
+                </fieldset>
+            </form>
+        <?php
+            unset($_SESSION['payment']);
+        endif;
+        ?>
+    </div>
+</section>

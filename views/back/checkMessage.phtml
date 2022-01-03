@@ -1,0 +1,31 @@
+<section class="section-back-check">
+    <h1>Modifier le commentaire</h1>
+    <div class="container">
+        <?php \Libraries\Error::display('error-check') ?>
+        <form action="index.php?page=back&task=manageMessage" method="post" class="box-container">
+            <fieldset>
+                <label for="title">Titre</label>
+                <input type="text" name="title" value="<?= $forum['title'] ?>" id="title" required>
+
+                <label for="message">Message</label>
+                <textarea name="message" id="message" required><?= $forum['message'] ?></textarea>
+
+                <label for="category">Categorie</label>
+                <select name="category" id="category" class="select">
+                    <?php foreach ($categoriesMessage as $category) : ?>
+                        <option value="<?= $category['categories_id'] ?>" <?= $category['category'] === $forum['category'] || $category['categories_id'] === $forum['category']  ? 'selected' : '' ?>>
+                            <?= $category['category'] ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+                <div class="group-buttons">
+                    <button type="submit" name="update" class="outline">Modifier</button>
+                    <button type="submit" name="validate">Valider</button>
+                    <button type="submit" name="delete" class="delete">Supprimer</button>
+                    <a href="index.php?page=back&task=backForum" class="cancel">Annuler</a>
+                </div>
+            </fieldset>
+        </form>
+        <?php unset($_SESSION['back-message']); ?>
+    </div>
+</section>

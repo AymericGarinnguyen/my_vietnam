@@ -1,0 +1,24 @@
+<section class="section-shop">
+    <h1>Le Shop</h1>
+    <?php foreach ($products as $product) :
+        $id = isset($_SESSION['cart'][$product['product_id']]) && !$_SESSION['cart'][$product['product_id']]['inStock'];
+    ?>
+        <div class="card">
+            <figure>
+                <img src="assets/img/shop/<?= $product['picture'] ?>" alt="<?= $product['picture'] ?>">
+            </figure>
+            <div class="description">
+                <h2><?= $product['name'] ?></h2>
+                <?= htmlspecialchars_decode($product['description']) ?>
+                <p class="price"><?= number_format($product['price'], 2, ',', ' ') ?> €</p>
+                <?php if ($id || $product['stock'] === "0") : ?>
+                    <p class="sold-out">Rupture de stock</p>
+                <?php else : ?>
+                        <a href="index.php?page=shop&task=add&id=<?= $product['product_id'] ?>" class="shop add-product button text-center" data-id="<?= $product['product_id'] ?>" data-action="add">
+                            Ajouter au panier
+                        </a>
+                <?php endif ?>
+            </div>
+        </div>
+    <?php endforeach ?>
+</section>

@@ -1,0 +1,65 @@
+<nav>
+    <figure>
+        <img src="assets/img/logo02.png" alt="logo du site">
+        <h2>My Vietnam</h2>
+    </figure>
+
+    <input type="checkbox" id="menu-checkbox" class="hide">
+    <label for="menu-checkbox" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <ul class="navbar">
+        <li class="<?= !isset($_GET['page']) || empty($_GET['page']) ? 'active' : \Libraries\Active::activeTab('page', 'home') ?>">
+            <a href="index.php?page=home">Accueil</a>
+        </li>
+        <li class="clickable <?= \Libraries\Active::activeTab('page', 'region') ?>">
+            <span>Régions</span>
+            <ul class="sub-menu">
+                <li class="<?= \Libraries\Active::activeTab('region', 'nord') ?>"><a href="index.php?page=region&region=nord">Nord</a></li>
+                <li class="<?= \Libraries\Active::activeTab('region', 'centre') ?>"><a href=" index.php?page=region&region=centre">Centre</a></li>
+                <li class="<?= \Libraries\Active::activeTab('region', 'sud') ?>"><a href="index.php?page=region&region=sud">Sud</a></li>
+            </ul>
+        </li>
+        <li class="<?= \Libraries\Active::activeTab('page', 'dish') ?>"><a href="index.php?page=dish">Gastronomie</a></li>
+        <?php if ($isUser) : ?>
+            <li class="clickable <?= \Libraries\Active::activeTab('page', 'forum') ?>">
+                <span>Forum</span>
+                <ul class="sub-menu">
+                    <li><a href="index.php?page=forum">Accueil</a></li>
+                    <?php foreach ($categories as $category) : ?>
+                        <li class="<?= \Libraries\Active::activeTab('id', $category['categories_id']) ?>">
+                            <a href="index.php?page=forum&task=chat&id=<?= $category['categories_id'] ?>">
+                                <?= $category['category'] ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+            <li class="<?= \Libraries\Active::activeTab('page', 'shop') ?>"><a href="index.php?page=shop">Le Shop</a></li>
+        <?php endif; ?>
+    </ul>
+
+    <div class="account">
+        <p>Xin chao <?= \Libraries\Session::issetValue('login', 'firstname', '') ?></p>
+        <ul>
+            <?php if ($isUser) : ?>
+                <li>
+                    <a href="index.php?page=user&task=logout" id="logout">
+                        <span class="normal-screen">Déconnexion</span><i class="fas fa-user-slash small-screen" title="Déconnexion"></i>
+                    </a>
+                </li>
+                <li class="cart">
+                    <a href="index.php?page=cart&task=display" title="Panier">
+                        <i class="fas fa-shopping-cart"></i>
+                        <?= $nbProductsInCart ?>
+                    </a>
+                </li>
+            <?php else : ?>
+                <li class="no-js"><a href="index.php?page=user">Connexion</a></li>
+                <li class="js-only"><a href="modal.phtml#modal-user" id="modal" class="js-modal">Connexion</a></li>
+            <?php endif; ?>
+        </ul>
+    </div>
+</nav>

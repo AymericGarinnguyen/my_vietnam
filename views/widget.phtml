@@ -1,0 +1,32 @@
+<aside class="js-only widget">
+    <div class="widget-container" aria-hidden="true">
+        <div class="flex-widget">
+            <fieldset class="weather">
+                <legend>Météo</legend>
+                <form>
+                    <select name="cities" id="cities">
+                        <option value="hanoi">Hanoï</option>
+                        <option value="da nang">Da Nang</option>
+                        <option value="ho chi minh">Hô Chi Minh</option>
+                    </select>
+                </form>
+                <div id="actual-time"></div>
+                <div class="all-weather">
+                    <div class="current-weather"></div>
+                    <div class="forecast-weather"></div>
+                </div>
+            </fieldset>
+            <fieldset class="currency">
+                <legend>Taux de change</legend>
+                <p id='rate'></p>
+                <form>
+                    <input type="text" name="euro" id="euro" value=1>
+                    <label for="euro">€</label>
+                    <input type="text" name="dong" id="dong">
+                    <label for="euro">₫</label>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+    <button class="arrow" id="widget-arrow"><i class="fas fa-chevron-right"></i></button>
+</aside>

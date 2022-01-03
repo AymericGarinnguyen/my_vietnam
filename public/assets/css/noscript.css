@@ -1,0 +1,7 @@
+.no-js {
+    display: block!important;
+}
+
+.js-only {
+    display: none!important;
+}

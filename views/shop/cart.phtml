@@ -1,0 +1,51 @@
+<section class="section-cart">
+    <h1>Mon panier</h1>
+    <?php if ($is_empty) : ?>
+        <div class="container">
+            <div class="text-center box-container">
+                <?php if (isset($_GET['success']) && $_GET['success'] === "true") : ?>
+                    <p>Votre achat a bien été effectué</p>
+                <?php else : ?>
+                    <p>Le panier est vide</p>
+                <?php endif ?>
+                <p>Rendez-vous sur la page du <a href="index.php?page=shop" class="redirection">Shop</a></p>
+            </div>
+        </div>
+    <?php else : ?>
+        <div class="container flex-direction">
+            <div class="all-card">
+                <?php foreach ($_SESSION['cart'] as $cart) : ?>
+                    <div class="card" id=card<?= $cart['id'] ?>>
+                        <h2><?= $cart['name'] ?></h2>
+                        <figure>
+                            <img src="assets/img/shop/<?= $cart['picture'] ?>" alt="<?= $cart['picture'] ?>">
+                        </figure>
+                        <div class="description">
+                            <p><?= $cart['stock'] > 0 ? 'En stock' : 'Rupture de stock' ?></p>
+                            <p class="price"><?= $cart['price'] ?> €</p>
+                            <form action="index.php?page=cart&task=update&id=<?= $cart['id'] ?>" method="post" class="form-quantity" data-id="<?= $cart['id'] ?>">
+                                <div class="action">
+                                    <label for="quantity<?= $cart['id'] ?>" aria-label="quantité" class="hide"></label>
+                                    <select name="quantity" id="quantity<?= $cart['id'] ?>" data-id="<?= $cart['id'] ?>">
+                                        <?php for ($i = 0; $i <= $cart['stock']; $i++) : ?>
+                                            <option value=<?= $i ?> <?= $i === $cart['quantity'] ? 'selected' : '' ?>><?= $i ?></option>
+                                        <?php endfor ?>
+                                    </select>
+                                    <a href="index.php?page=cart&task=delete&id=<?= $cart['id'] ?>" class="shop delete" data-id="<?= $cart['id'] ?>" data-action="delete">Supprimer</a>
+                                </div>
+                                <button type="submit" class="no-js">Mettre à jour</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+            </div>
+            <aside>
+                <div class="order-box">
+                    <p>Prix total : <span id="total-price"><?= $totalPrice ?> €</span></p>
+                    <p>Nombre total d'article : <span id="total-quantity"><?= $totalQuantity ?></span></p>
+                    <a href="index.php?page=cart&task=<?= $_SESSION['login']['is_filled'] === '1' ? 'summary' : 'fill' ?>" class="button">Commander</a>
+                </div>
+            </aside>
+        </div>
+    <?php endif ?>
+</section>

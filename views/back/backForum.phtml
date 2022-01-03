@@ -1,0 +1,36 @@
+<section class="section-back">
+    <h1>Message à vérifier</h1>
+    <div class="container">
+        <form action="index.php?page=back&task=manageMessage" method="post" class="box-container">
+            <div class="table-overflow">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Contrôler</th>
+                            <th>Valider</th>
+                            <th>Supprimer</th>
+                            <th>Ne rien faire</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($messages as $message) : ?>
+                            <tr>
+                                <td><?= $message['title'] ?></td>
+                                <td><?= $message['email'] ?></td>
+                                <td><?= date("d-m-Y", strtotime($message['created_at']))?></td>
+                                <td><a href="index.php?page=back&task=checkMessage&id=<?= $message['forum_id'] ?>">Contrôler</a></td>
+                                <td class="center"><input type="radio" name="check[<?= $message['forum_id'] ?>]" value="val"></td>
+                                <td class="center"><input type="radio" name="check[<?= $message['forum_id'] ?>]" value="del"></td>
+                                <td class="center"><input type="radio" name="check[<?= $message['forum_id'] ?>]" value="nothin" checked></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+            <button type="submit" name="manage">Valider</button>
+        </form>
+    </div>
+</section>

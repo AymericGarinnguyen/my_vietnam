@@ -1,0 +1,18 @@
+<section class="section-summary">
+    <h1>Vos coordonnées</h1>
+    <div class="container">
+        <address>
+            <p><span>Nom complet :</span> <?= $_SESSION['login']['firstname'] ?> <?= $_SESSION['login']['lastname'] ?></p>
+            <p><span>Adresse :</span> <?= $_SESSION['login']['address_line1'] ?></p>
+            <p><span>Complément d'adresse :</span> <?= \Libraries\Session::issetValue('login', 'address_line2', '-') ?></p>
+            <p><span>Code Postal :</span> <?= $_SESSION['login']['zipcode'] ?></p>
+            <p><span>Ville :</span> <?= $_SESSION['login']['city'] ?></p>
+            <p><span>Email :</span> <?= $_SESSION['login']['email'] ?></p>
+            <p><span>Téléphone :</span> <?= $_SESSION['login']['phone'] ?></p>
+        </address>
+        <div class="group-button">
+            <a href="index.php?page=cart&task=fill" class="modify button outline">Modifier</a>
+            <a href="index.php?page=cart&task=payment" class="button">Payer</a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,42 @@
+<section class="section-check">
+    <h1>Vérifier vos informations</h1>
+    <div class="container">
+
+        <?php \Libraries\Error::display('error-user'); ?>
+
+        <form action="index.php?page=user&task=manageUser" method="post" id="form-check" data-page="user" data-task="update" class="form box-container">
+            <fieldset>
+                <label for="check-firstname">Prénom *</label>
+                <input type="text" name="firstname" id="check-firstname" data-type="text" value="<?= $session['firstname'] ?>" required>
+
+                <label for="check-lastname">Nom *</label>
+                <input type="text" name="lastname" id="check-lastname" data-type="text" value="<?= $session['lastname'] ?>" required>
+
+                <label for="check-email">Email *</label>
+                <input type="email" name="email" id="check-email" data-type="email" value="<?= $session['email'] ?>" required>
+
+                <label for="check-phone">Phone *</label>
+                <input type="tel" name="phone" id="check-phone" data-type="phone" value="<?= $session['phone'] ?>" required>
+
+                <label for="check-address">Adresse *</label>
+                <input type="text" name="address_line1" id="check-address" value="<?= $session['address_line1'] ?>" required>
+
+                <label for="check-add-address">Complément d'adresse</label>
+                <input type="text" name="address_line2" id="check-add-address" data-empty="true" value="<?= $session['address_line2'] ?>">
+
+                <label for="check-zipcode">Code Postal *</label>
+                <input type="text" name="zipcode" id="check-zipcode" data-type="zipcode" value="<?= $session['zipcode'] ?>" required>
+
+                <label for="check-city">Ville *</label>
+                <input type="text" name="city" id="check-city" data-type="text" value="<?= $session['city'] ?>" required>
+
+                <div class="group-buttons">
+                    <button type="submit" name="update">Mettre à jour</button>
+                    <a href="index.php?page=cart<?= $_SESSION['login']['is_filled'] === '1' ? '&task=summary' : '' ?>" class="cancel">Annuler</a>
+                </div>
+                <em>* champs obligatoires</em>
+            </fieldset>
+        </form>
+        <?php unset($_SESSION['user']); ?>
+    </div>
+</section>

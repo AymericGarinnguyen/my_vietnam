@@ -1,0 +1,44 @@
+<aside id="modal-user" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-label="modal de connexion">
+
+    <div class="modal-container stop-propagation">
+        <button class="close" title="Fermer"><i class="fas fa-times"></i></button>
+        <!-- Authentification From -->
+        <form id="login" class="form-modal form box-container" data-page="user" data-task="manageUser">
+            <fieldset>
+                <legend>Authentification</legend>
+                <input type="hidden" name="auth" value=" ">
+
+                <label for="email" aria-labelledby="email">Email</label>
+                <input type="email" name="email" id="email" data-type="email" required>
+
+                <label for="password" aria-labelledby="mot de passe">Mot de passe</label>
+                <input type="password" name="password" id="password" data-type="password" required>
+
+                <button type="submit">Connexion</button>
+            </fieldset>
+        </form>
+        <!-- Registration From -->
+        <form id="register" class="form-modal form box-container hide" data-page="user" data-task="manageUser">
+            <fieldset>
+                <legend>Créer un compte</legend>
+                <input type="hidden" name="insert" value=" ">
+                
+                <label for="register-firstName" aria-labelledby="prénom">Prénom</label>
+                <input type="text" name="firstname" id="register-firstName" data-type="text" required>
+
+                <label for="register-lastName" aria-labelledby="nom">Nom</label>
+                <input type="text" name="lastname" id="register-lastName" data-type="text" required>
+
+                <label for="register-email" aria-labelledby="email">Email</label>
+                <input type="email" name="email" id="register-email" data-type="email" required>
+
+                <label for="register-password" aria-labelledby="mot de passe">Mot de passe</label>
+                <input type="password" name="password" id="register-password" data-type="password" required>
+
+                <button type="submit">S'inscrire</button>
+            </fieldset>
+        </form>
+        <a href="#login" class="choice-form hide" data-form="#register">Connexion</a>
+        <a href="#register" class="choice-form" data-form="#login" data-button="register">S'inscrire</a>
+    </div>
+</aside>

@@ -1,0 +1,32 @@
+<section class="section-back">
+    <h1>Shop</h1>
+    <div class="container">
+        <div class="box-container">
+            <a href="index.php?page=back&task=newProduct" class="button add">Ajouter un article</a>
+            <div class="table-overflow">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Stock</th>
+                            <th>Category</th>
+                            <th>Check</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($products as $product) : ?>
+                            <tr>
+                                <td><?= $product['product_id'] ?></td>
+                                <td><?= $product['name'] ?></td>
+                                <td><?= $product['stock'] ?></td>
+                                <td><?= $product['category'] ?></td>
+                                <td class="center"><a href="index.php?page=back&task=checkProduct&id=<?= $product['product_id'] ?>"><i class="fas fa-chevron-right"></i></a></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

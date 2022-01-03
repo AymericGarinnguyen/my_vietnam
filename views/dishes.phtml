@@ -1,0 +1,27 @@
+<section class="section-dish">
+    <h1>La gastronomie</h1>
+    <p>La gastronomie est un sujet important au Vietnam. La "Street Food" y est très présente.
+        Dans chaque coin de rue, vous pouvez y trouvez un petit stand avec une spécialité locale à déguster.
+    </p>
+    <ul class="js-only">
+        <li class="choose-mix" data-filter="all">Tous</li>
+        <li class="choose-mix" data-filter=".north">Nord</li>
+        <li class="choose-mix" data-filter=".center">Centre</li>
+        <li class="choose-mix" data-filter=".south">Sud</li>
+    </ul>
+    <div class="mix-container mixitup">
+        <?php foreach ($dishes as $dish) : ?>
+            <article class="mix <?= $dish['region'] ?>">
+                <figure class="dish-figure">
+                    <img src="assets/img/dishes/<?= $dish['picture'] ?>" alt="Photo du plat <?= $dish['name'] ?>">
+                    <figcaption>
+                        <div class="border">
+                            <h2><?= $dish['name'] ?></h2>
+                            <p><?= $dish['description'] ?></p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+        <?php endforeach ?>
+    </div>
+</section>
